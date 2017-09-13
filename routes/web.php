@@ -96,10 +96,27 @@ Route::group(['middleware' =>'admin'] , function() {
     Route::resource('companies','CompanyController');
 });
 
+Route::group(['midleware' => 'manager'] , function() {
+    Route::resource('stores','StoreController');
+});
+
+Route::group(['midleware' => 'store'] , function() {
+    Route::resource('tasks','TaskController');
+});
+
+Route::group(['midleware' => 'worker'] , function() {
+    Route::resource('tasks','TaskController');
+});
+
+
 Route::get('/logout','LoginController@logout');
 Route::get('/earnings','AdminController@earnings')->middleware('admin');
 Route::get('/tasks','ManagerController@tasks')->middleware('manager'); // remember to register middleware class in Kernel.php
 Route::get('/activate/{email}/{activationCode}','ActivationController@activate');
+
+
+// delete theese
+
 Route::post('/posts','PostsController@store');
 
 

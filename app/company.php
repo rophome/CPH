@@ -24,5 +24,8 @@ class company extends Model
 
     }
 
+    public function users() {
+        return $this->belongsToMany(user::class)->withTimestamps();
+    }
 
 }

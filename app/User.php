@@ -36,4 +36,8 @@ class User extends EloquentUser
     {
         return static::whereEmail($email)->first();
     }
+
+    public function companies() {
+        return $this->belongsToMany(company::class)->withTimestamps();
+    }
 }

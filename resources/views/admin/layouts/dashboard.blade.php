@@ -303,8 +303,8 @@
                                 <li {{ (Request::is('*companies') ? 'class="active"' : '') }}>
                                     <a href="{{ url ('companies') }}">Company</a>
                                 </li>
-                                <li {{ (Request::is('*buttons') ? 'class="active"' : '') }}>
-                                    <a href="{{ url ('buttons' ) }}">Shops</a>
+                                <li {{ (Request::is('*stores') ? 'class="active"' : '') }}>
+                                    <a href="{{ url ('stores' ) }}">Store</a>
                                 </li>
                                 <li {{ (Request::is('*notifications') ? 'class="active"' : '') }}>
                                     <a href="{{ url('notifications') }}">Tasks</a>

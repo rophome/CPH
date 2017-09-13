@@ -10,15 +10,18 @@ class CompanyController extends Controller
 {
     public function index(Request $request)
     {
-        $user = Sentinel::getUser();
-        if($user->hasAccess('company.list'))
-        {
-            $companies = Company::all();
+        if (Sentinel::check()) {
+            $user = Sentinel::getUser();
+            if ($user->hasAccess('company.list')) {
+                $companies = Company::all();
 //            dd($companies);
-            return view ('company.list',compact('companies'));
+                return view('company.list', compact('companies'));
+            } else
+                abort(403, 'Authorized access!');
+        } else {
+            abort(403, 'Authorized access!');
         }
-        else
-            abort(403,'Authorized access!');
+
     }
 
     public function create()

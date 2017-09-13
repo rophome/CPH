@@ -33,15 +33,14 @@ class LoginController extends Controller
                 else
                     return 'No valid group';
             } else {
-            dd($request);
                 return redirect()->back()->with(['error'=>'Wrong cridentials.']);
             }
         }catch (ThrottlingException $e) {
             $delay=$e->getDelay();
 
-            return response()->json(['error' => "You are banned for $delay seconds!"],500);
+            return redirect()->back()->with(['error' => "You are banned for $delay seconds!"]);
         }catch (NotActivatedException $e) {
-            return response()->json(['error' => 'Account not activated yet!'],500);
+            return redirect()->back()->with(['error' => 'Account not activated yet!']);
         }
     }
 
