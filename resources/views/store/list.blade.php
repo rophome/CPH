@@ -25,11 +25,21 @@
                                     <td>{{$store->id}}</td>
                                     <td><a href="/stores/{{ $store->id}}">{{$store->name}}</a></td>
                                     <td>{{$store->zip}} {{$store->city}}</td>
-                                    <td><a href="/stores/{{$store->id}}/edit/"><i class="fa fa-pencil fa-fw" aria-hidden="true"></i>&nbsp; Edit</a></td>
+                                    <td><a href="/stores/{{$store->id}}/edit/"><i class="fa fa-pencil fa-fw" aria-hidden="true"></i>&nbsp; Edit</a>
+                                        <br>
+                                        {!! Form::open(['method' => 'DELETE',
+                                      'route' => ['stores.destroy', $store->id],
+                                      'id' => 'form-delete-companies-' . $store->id]) !!}
+                                        <a href="" class="data-delete text-danger"
+                                           data-form="companies-{{ $store->id }}">
+                                            <i class="glyphicon glyphicon-remove icon-spacer"></i>&nbsp; Delete</a>
+                                        {!! Form::close() !!}
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
+                    <a href="/stores/create" class="btn btn-success">Create new</a>
                 </div>
             </div>
             <div class="card-footer small text-muted">
@@ -38,6 +48,15 @@
         </div>
     </div>
     </div>
+    <script>
+        $(function () {
+            $('.data-delete').on('click', function (e) {
+                if (!confirm('Are you sure you want to delete?')) return;
+                e.preventDefault();
+                $('#form-delete-' + $(this).data('form')).submit();
+            });
+        });
+       </script>
     <script>
         $(document).ready(function(){
         $('#companyTable').DataTable();

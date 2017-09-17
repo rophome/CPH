@@ -40,4 +40,8 @@ class User extends EloquentUser
     public function companies() {
         return $this->belongsToMany(company::class)->withTimestamps();
     }
+
+    public function store() {
+        return $this->belongsTo(store::class);
+    }
 }

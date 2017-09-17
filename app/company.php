@@ -8,13 +8,13 @@ class company extends Model
 {
 
     protected $fillable = [
-        'name'
+        'name','company_contact_user_id'
     ];
 
 
-    public function company_users()
+    public function company_user()
     {
-        return $this->hasMany(company_users::class,'approved_by_user_id');
+        return $this->hasMany(company_user::class,'approved_by_user_id');
     }
 
     public function contact()

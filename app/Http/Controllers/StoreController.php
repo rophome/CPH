@@ -25,8 +25,8 @@ class StoreController extends Controller
                 $stores=DB::table('stores')->get();
             }else {
                 $stores = DB::table('stores')
-                    ->join('company_users', 'stores.company_id', 'company_users.company_id')
-                    ->where('company_users.user_id', $user->id)->get();
+                    ->join('company_user', 'stores.company_id', 'company_user.company_id')
+                    ->where('company_user.user_id', $user->id)->get();
             }
             return view ('store.list',compact('stores'));
         }
@@ -36,26 +36,69 @@ class StoreController extends Controller
 
     public function create()
     {
-        return ('not implemented yet');
+        $role = Sentinel::findRoleBySlug('storeuser');
+
+        $users = $role->users()->with('roles')->get();
+
+     //   dd($users);
+
+        return view('store.create', compact ('users'));
+
     }
 
     public function store(Request $request)
     {
-        return ('not implemented yet');
+        $user_id = $request->get('contact_person_id');
+
+        $user=User::find($user_id);
+        $company=Company::find($user->companies()->first());
+        $company_id = (int) $company[0]->id;
+
+
+        $store = new Store([
+            'name' => $request->get('name'),
+            'company_id' => $company_id,
+            'address_line1' => $request->get('address_line1'),
+            'address_line2' => $request->get('address_line2'),
+            'zip' => $request->get('zip'),
+            'city' => $request->get('city'),
+            'country' => $request->get('country'),
+            'telephone' => $request->get('telephone'),
+            'email' => $request->get('email'),
+            'contact_person_id' => $request->get('contact_person_id')
+        ]);
+
+        $store->save();
+
+
+        return redirect('/stores');
     }
 
     public function show($id)
     {
-        $sore = Store::findOrFail($id);
+        $store = Store::findOrFail($id);
 
         return view('store.show', compact('store'));
     }
 
     public function edit($id)
     {
-        $sore = Store::findOrFail($id);
+        $store = Store::findOrFail($id);
 
-        return view('store.edit', compact('store'));
+        $role='storeuser';
+
+        $id = $store->id;
+
+        $users = DB::table('users')
+            ->join('company_user','users.id','company_user.user_id')
+            ->join('role_users','users.id','role_users.user_id')
+            ->join('roles','role_users.role_id','roles.id')
+            ->where([
+                ['company_user.company_id',$store->company_id],
+                ['roles.slug',$role]
+            ])->get();
+
+        return view('store.edit', compact('store' , 'users'));
     }
 
     public function update(Request $request, $id)
@@ -69,7 +112,13 @@ class StoreController extends Controller
 
     public function destroy($id)
     {
-        return ('not implemented yet');
+
+
+        $store = Store::findOrFail($id);
+
+        $store->delete();
+
+        return redirect('/stores');
     }
 
 

@@ -13,7 +13,7 @@ class CreateCompanyUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('company_users', function (Blueprint $table) {
+        Schema::create('company_user', function (Blueprint $table) {
             $table->integer('company_id');
             $table->integer('user_id');
             $table->timestamps();
@@ -29,6 +29,6 @@ class CreateCompanyUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('company_users');
+        Schema::dropIfExists('company_user');
     }
 }

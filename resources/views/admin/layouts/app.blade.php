@@ -11,6 +11,11 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
     <link rel="stylesheet" href="{{ asset('css/timeline.css') }}">
+    <link rel="stylesheet" href="{{asset('css/bootstrap-theme.min.css')}}">
+    <script src="{{asset('js/jquery-3.2.1.slim.min.js')}}"></script>
+    <link rel="stylesheet" type="text/css" href="{{asset('dataTables/datatables.min.css')}}"/>
+
+    <script type="text/javascript" src="{{asset('dataTables/datatables.min.js')}}"></script>
 
     <!-- Scripts -->
     <script>
@@ -26,5 +31,6 @@
 <script src="{{ asset("js/app.js") }}"></script>
 <script src="{{ asset("js/Chart.js") }}"></script>
 <script src="{{ asset("js/admin.js") }}"></script>
+
 </body>
 </html>

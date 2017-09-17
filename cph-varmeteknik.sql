@@ -58,7 +58,7 @@ INSERT INTO `companies` (`id`, `name`, `company_contact_user_id`, `created_at`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `company_users`
+-- Table structure for table `company_user`
 --
 
 -- --------------------------------------------------------
@@ -82,7 +82,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (9, '2017_08_15_145813_create_offers_table', 1),
 (10, '2017_08_15_145925_create_tasks_table', 1),
 (11, '2017_08_15_145945_create_companies_table', 1),
-(12, '2017_08_15_150008_create_company_users_table', 1),
+(12, '2017_08_15_150008_create_company_user_table', 1),
 (13, '2017_08_15_150024_create_stores_table', 1),
 (14, '2017_08_15_150039_create_documents_table', 1),
 (15, '2017_08_15_150053_create_document_attachments_table', 1);
@@ -206,9 +206,9 @@ ALTER TABLE `companies`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `company_users`
+-- Indexes for table `company_user`
 --
-ALTER TABLE `company_users`
+ALTER TABLE `company_user`
   ADD PRIMARY KEY (`company_id`,`user_id`);
 
 --
