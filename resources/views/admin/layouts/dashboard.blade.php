@@ -306,26 +306,11 @@
                                 <li {{ (Request::is('*stores') ? 'class="active"' : '') }}>
                                     <a href="{{ url ('stores' ) }}">Store</a>
                                 </li>
-                                <li {{ (Request::is('*notifications') ? 'class="active"' : '') }}>
-                                    <a href="{{ url('notifications') }}">Tasks</a>
+                                <li {{ (Request::is('*tasks') ? 'class="active"' : '') }}>
+                                    <a href="{{ url('tasks') }}">Tasks</a>
                                 </li>
-                                <li {{ (Request::is('*typography') ? 'class="active"' : '') }}>
-                                    <a href="{{ url ('typography') }}">Users</a>
-                                </li>
-                                <li {{ (Request::is('*icons') ? 'class="active"' : '') }}>
-                                    <a href="{{ url ('icons') }}"> Icons</a>
-                                </li>
-                                <li {{ (Request::is('*grid') ? 'class="active"' : '') }}>
-                                    <a href="{{ url ('grid') }}">Grid</a>
-                                </li>
-                                <li {{ (Request::is('*progressbars') ? 'class="active"' : '') }}>
-                                    <a href="{{ url ('progressbars') }}">Progressbars</a>
-                                </li>
-                                <li {{ (Request::is('*collapse') ? 'class="active"' : '') }}>
-                                    <a href="{{ url ('collapse') }}">Collapse</a>
-                                </li>
-                                <li {{ (Request::is('*stats') ? 'class="active"' : '') }}>
-                                    <a href="{{ url ('stats') }}">Stats</a>
+                                <li {{ (Request::is('*users') ? 'class="active"' : '') }}>
+                                    <a href="{{ url ('users') }}">Users</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->

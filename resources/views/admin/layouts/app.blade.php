@@ -28,9 +28,6 @@
 <body>
 @yield('body')
 
-<script src="{{ asset("js/app.js") }}"></script>
-<script src="{{ asset("js/Chart.js") }}"></script>
-<script src="{{ asset("js/admin.js") }}"></script>
 
 </body>
 </html>

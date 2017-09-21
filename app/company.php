@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+
 class company extends Model
 {
 
@@ -12,9 +13,14 @@ class company extends Model
     ];
 
 
-    public function company_user()
+    public function users()
     {
-        return $this->hasMany(company_user::class,'approved_by_user_id');
+        return $this->belongsToMany('App\User');
+    }
+
+    public function tasks()
+    {
+        return $this->hasMany(task::class, 'company_id');
     }
 
     public function contact()
@@ -23,9 +29,4 @@ class company extends Model
 //        return $this->belongsTo(User::class,'user_id');
 
     }
-
-    public function users() {
-        return $this->belongsToMany(user::class)->withTimestamps();
-    }
-
 }

@@ -58,7 +58,7 @@ INSERT INTO `companies` (`id`, `name`, `company_contact_user_id`, `created_at`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `company_user`
+-- Table structure for table `company_users`
 --
 
 -- --------------------------------------------------------
@@ -206,7 +206,7 @@ ALTER TABLE `companies`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `company_user`
+-- Indexes for table `company_users`
 --
 ALTER TABLE `company_user`
   ADD PRIMARY KEY (`company_id`,`user_id`);

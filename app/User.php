@@ -2,9 +2,8 @@
 
 namespace App;
 
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use Cartalyst\Sentinel\Users\EloquentUser;
+use Illuminate\Notifications\Notifiable;
 
 class User extends EloquentUser
 {
@@ -38,10 +37,11 @@ class User extends EloquentUser
     }
 
     public function companies() {
-        return $this->belongsToMany(company::class)->withTimestamps();
+        return $this->belongsToMany('\App\company')->withTimestamps();
     }
 
-    public function store() {
-        return $this->belongsTo(store::class);
+    public function stores()
+    {
+        return $this->hasMany(store::class, contact_person_id);
     }
 }

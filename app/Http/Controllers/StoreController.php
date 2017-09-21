@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\company;
+use App\store;
+use App\User;
+use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
-use App\store;
-use App\company;
-use App\User;
-
 
 
 class StoreController extends Controller
@@ -25,8 +24,8 @@ class StoreController extends Controller
                 $stores=DB::table('stores')->get();
             }else {
                 $stores = DB::table('stores')
-                    ->join('company_user', 'stores.company_id', 'company_user.company_id')
-                    ->where('company_user.user_id', $user->id)->get();
+                    ->join('company_users', 'stores.company_id', 'company_users.company_id')
+                    ->where('company_users.user_id', $user->id)->get();
             }
             return view ('store.list',compact('stores'));
         }
@@ -51,7 +50,13 @@ class StoreController extends Controller
         $user_id = $request->get('contact_person_id');
 
         $user=User::find($user_id);
+
+        //dd($user);
+
         $company=Company::find($user->companies()->first());
+
+        //  dd($company);
+
         $company_id = (int) $company[0]->id;
 
 

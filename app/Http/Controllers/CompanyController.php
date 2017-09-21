@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use App\company;
 use App\User;
+use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 
@@ -48,6 +48,7 @@ class CompanyController extends Controller
         $company->save();
 
         $user=User::find($user_id);
+
         $user->companies()->attach($company);
 
 

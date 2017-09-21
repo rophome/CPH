@@ -89,11 +89,12 @@ Route::group(['middleware' => 'visitors'], function(){
     Route::get('/reset/{email}/{resetCode}','ForgotPasswordController@resetPassword');
     Route::post('/reset/{email}/{resetCode}','ForgotPasswordController@postResetPassword');
 });
+
 Route::group(['middleware' =>'admin'] , function() {
 
-    Route::get('/upload', 'UploadController@uploadForm');
-    Route::post('/upload', 'UploadController@uploadSubmit');
-    Route::resource('companies','CompanyController');
+//    Route::get('/upload', 'UploadController@uploadForm');
+//    Route::post('/upload', 'UploadController@uploadSubmit');
+    Route::resource('companies', 'CompanyController');
 });
 
 Route::group(['midleware' => 'manager'] , function() {
@@ -111,7 +112,6 @@ Route::group(['midleware' => 'worker'] , function() {
 
 Route::get('/logout','LoginController@logout');
 Route::get('/earnings','AdminController@earnings')->middleware('admin');
-Route::get('/tasks','ManagerController@tasks')->middleware('manager'); // remember to register middleware class in Kernel.php
 Route::get('/activate/{email}/{activationCode}','ActivationController@activate');
 
 

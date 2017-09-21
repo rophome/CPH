@@ -8,7 +8,12 @@ class task extends Model
 {
     public function store()
     {
-        return $this->belongsTo(store::class,'store_id');
+        return $this->belongsTo(store::class);
+    }
+
+    public function company()
+    {
+        return $this->belongsTo(company::class);
     }
 
     public function document()
@@ -16,9 +21,8 @@ class task extends Model
         return $this->hasmany(document::class,'document_id');
     }
 
-    public function created()
-    {
-        return $this->belongsTo(user::class,'created_by_user_id');
-    }
-
+    //   public function created()
+    //   {
+    //       return $this->belongsTo(user::class,'created_by_user_id');
+    //   }
 }

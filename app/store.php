@@ -21,10 +21,15 @@ class store extends Model
 
     public function company()
     {
-        return $this->belongsTo(company::class,'company_id');
+        return $this->belongsTo(\App\company::class, 'company_id');
     }
     public function tasks()
     {
-        return $this->hasMany(tasks::class,'company_id');
+        return $this->hasMany(task::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(user::class, 'contact_person_id');
     }
 }
